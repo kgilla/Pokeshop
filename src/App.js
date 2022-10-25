@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 
 const typeColors = {
-  fire: "bg-red-400",
-  grass: "bg-green-400",
-  poison: "bg-purple-400",
+  fire: "bg-red-500",
+  grass: "bg-green-500",
+  poison: "bg-purple-500",
   bug: "bg-green-500",
-  flying: "bg-yellow-200",
-  water: "bg-blue-400",
-  normal: "bg-gray-300",
-  rock: "bg-amber-600 text-white",
-  electric: "bg-yellow-400",
-  ice: "bg-blue-200",
-  fairy: "bg-pink-200",
-  psychic: "bg-purple-400",
-  ground: "bg-slate-400",
-  fighting: "bg-yellow-600",
-  dragon: "bg-red-700 text-white",
+  flying: "bg-yellow-400",
+  water: "bg-blue-500",
+  normal: "bg-gray-400",
+  rock: "bg-amber-600",
+  electric: "bg-yellow-500",
+  ice: "bg-blue-400",
+  fairy: "bg-pink-400",
+  psychic: "bg-purple-500",
+  ground: "bg-slate-500",
+  fighting: "bg-yellow-700",
+  dragon: "bg-red-800",
 };
 
 const App = () => {
@@ -53,9 +53,14 @@ const App = () => {
 const Card = ({ pokemon }) => {
   const stats = () => {
     return pokemon.stats.map((item) => (
-      <div>
-        <label>{item.stat.name}</label>
-        <span>{item.base_stat}</span>
+      <div
+        key={item.stat.name + pokemon.id}
+        className="flex justify-between mx-4"
+      >
+        <label className="text-gray-500 text-sm capitalize">
+          {item.stat.name}
+        </label>
+        <span className="font-semi-bold text-gray-800">{item.base_stat}</span>
       </div>
     ));
   };
@@ -63,7 +68,10 @@ const Card = ({ pokemon }) => {
   const types = () => {
     return pokemon.types.map((item) => (
       <span
-        className={typeColors[item.type.name] + " rounded-xl py-1 px-2 mr-1"}
+        className={
+          typeColors[item.type.name] +
+          " rounded-xl py-1 px-2 mr-1 capitalize text-sm font-semi-bold text-white"
+        }
         key={item.type.name}
       >
         {item.type.name}
@@ -72,15 +80,15 @@ const Card = ({ pokemon }) => {
   };
 
   return (
-    <div className="border-2 border-gray-200 shadow-lg rounded-md p-2 bg-gray-100">
+    <div className="border-2 border-gray-200 shadow-lg rounded-md p-4 bg-amber-100">
       <header className="flex justify-between mb-2">
         <h1 className="capitalize font-bold">{pokemon.name}</h1>
-        <span>#{pokemon.id}</span>
+        <span className="font-bold text-gray-600">#{pokemon.id}</span>
       </header>
 
-      <div className="border-2 border-yellow-600 flex justify-center items-center bg-red-200 mb-2">
+      <div className="border-2 border-yellow-600 rounded flex justify-center items-center bg-red-100 mb-2">
         <img
-          className="w-32 h-32"
+          className="w-36 h-36"
           src={pokemon.sprites.front_default}
           alt={`Image of ${pokemon.name}`}
         ></img>
@@ -88,7 +96,10 @@ const Card = ({ pokemon }) => {
 
       <div className="mb-2">{types()}</div>
 
-      {stats()}
+      <div className="border-2 border-gray-300 rounded p-1 bg-white">
+        {" "}
+        {stats()}
+      </div>
     </div>
   );
 };
