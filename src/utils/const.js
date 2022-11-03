@@ -16,20 +16,13 @@ export const typeColors = {
   dragon: "bg-red-800",
 };
 
-export const pokemonGenerations = {
-  gen1: {
-    label: "Generation One",
-    limit: 151,
-    offset: 0,
-  },
-  gen2: {
-    label: "Generation Two",
-    limit: 100,
-    offset: 151,
-  },
-  gen3: {
-    label: "Generation Three",
-    limit: 134,
-    offset: 251,
-  },
+export const generations = {
+  1: "Generation I",
+  2: "Generation II",
+  3: "Generation III",
+  4: "Generation IV",
+  5: "Generation V",
+  6: "Generation VI",
+  7: "Generation VII",
+  8: "Generation VIII",
 };

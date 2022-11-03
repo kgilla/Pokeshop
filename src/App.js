@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchData } from "./utils/query";
-import { pokemonGenerations } from "./utils/const";
 import Loading from "./components/Loading";
 import TopNav from "./components/TopNav";
 import PokemonGrid from "./components/PokemonGrid";
+import SideNav from "./components/SideNav";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +11,7 @@ const App = () => {
   const [generationData, setGenerationData] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGeneration, setSelectedGeneration] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   const pageLimit = 50;
 
@@ -35,15 +36,20 @@ const App = () => {
         setGenerationData({ ...generationData, newData });
       }
       data.pokemon_species.forEach((item) => {
-        list.push(fetchData(`https://pokeapi.co/api/v2/pokemon/${item.name}/`));
+        list.push(fetchData(`https://pokeapi.co/api/v2/pokemon/${item.name}`));
       });
 
-      const resolved = await Promise.all(list);
+      const resolved = await Promise.allSettled(list).catch((err) => {
+        console.log("A promise failed to resolve", err);
+      });
 
       if (resolved) {
-        const sorted = resolved.sort((a, b) => (a.id > b.id ? 1 : -1));
+        const values = resolved
+          .filter((item) => item.status === "fulfilled")
+          .map((item) => item.value)
+          .sort((a, b) => (a.id > b.id ? 1 : -1));
         const dataCopy = { ...pokemonData };
-        dataCopy[data.id] = sorted;
+        dataCopy[data.id] = values;
         setPokemonData({ ...dataCopy });
       }
     }
@@ -62,7 +68,16 @@ const App = () => {
 
   return (
     <div className="h-screen w-screen  bg-slate-200">
-      <TopNav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <TopNav
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        setIsOpen={setIsOpen}
+      />
+      <SideNav
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        setGeneration={setSelectedGeneration}
+      />
       {isLoading ? <Loading /> : null}
       <PokemonGrid
         pokemon={filteredResults()}
