@@ -1,8 +1,4 @@
-const TopNav = ({ searchQuery, setSearchQuery, setIsOpen }) => {
-  const handleSearchInput = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
+const TopNav = ({ setIsOpen }) => {
   const handleClick = () => {
     setIsOpen(true);
   };
@@ -23,12 +19,6 @@ const TopNav = ({ searchQuery, setSearchQuery, setIsOpen }) => {
       <h1 className="text-white text-lg font-bold place-self-center">
         Pokestore
       </h1>
-      <input
-        className="rounded-md py-1 px-3 justify-self-end self-center"
-        value={searchQuery}
-        onChange={handleSearchInput}
-        placeholder="Search"
-      />
     </header>
   );
 };

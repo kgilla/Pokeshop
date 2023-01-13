@@ -1,8 +1,8 @@
 const Loading = () => {
   return (
-    <div className="h-screen w-screen fixed grid grid-cols-1">
+    <div className="fixed left-0 top-0 w-screen h-screen bg-gray-400/20 flex justify-center items-center">
       <svg
-        className="justify-self-center self-center bg-green-600 rounded-xl p-4"
+        className="bg-gray-600 p-6 rounded-xl"
         width="105"
         height="105"
         viewBox="0 0 105 105"
@@ -19,7 +19,7 @@ const Loading = () => {
             repeatCount="indefinite"
           />
         </circle>
-        <circle cx="12.5" cy="52.5" r="12.5" fill-opacity=".5">
+        <circle cx="12.5" cy="52.5" r="12.5" fillOpacity=".5">
           <animate
             attributeName="fill-opacity"
             begin="100ms"

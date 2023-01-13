@@ -1,6 +1,6 @@
 import { typeColors } from "../utils/const";
 
-const Card = ({ pokemon }) => {
+const PokemonCard = ({ pokemon }) => {
   const stats = () => {
     return pokemon.stats.map((item) => (
       <div
@@ -30,7 +30,7 @@ const Card = ({ pokemon }) => {
   };
 
   return (
-    <div className="border-2 border-gray-200 shadow-lg rounded-md p-4 bg-amber-100 min-w-md">
+    <div className="border-2 border-gray-200 shadow-lg rounded-md p-4 bg-amber-100 hover:bg-amber-200 hover:cursor-pointer hover:shadow-xl">
       <header className="flex justify-between mb-2">
         <h1 className="capitalize font-bold">{pokemon.name}</h1>
         <span className="font-bold text-gray-600">#{pokemon.id}</span>
@@ -40,7 +40,7 @@ const Card = ({ pokemon }) => {
         <img
           className="w-36 h-36"
           src={pokemon.sprites.front_default}
-          alt={`Image of ${pokemon.name}`}
+          alt={`${pokemon.name}`}
         ></img>
       </div>
 
@@ -54,4 +54,4 @@ const Card = ({ pokemon }) => {
   );
 };
 
-export default Card;
+export default PokemonCard;

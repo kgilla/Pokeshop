@@ -1,18 +1,19 @@
 import { generations } from "../utils/const";
+import { Link } from "react-router-dom";
+import { click } from "@testing-library/user-event/dist/click";
 
-const SideNav = ({ isOpen, setIsOpen, setGeneration }) => {
+const SideNav = ({ isOpen, setIsOpen }) => {
   const handleOverlayClick = () => {
     setIsOpen(false);
   };
 
-  const handleMenuItemClick = (generation) => {
-    setGeneration(generation);
+  const handleMenuItemClick = () => {
     setIsOpen(false);
   };
 
   const classChange = () => {
     return isOpen
-      ? "fixed inset-0 w-64 ml-0 bg-green-200 transition-all ease-in-out duration-300 z-10"
+      ? "fixed inset-0 w-96 ml-0 bg-green-200 transition-all ease-in-out duration-300 z-10"
       : "fixed inset-0 w-64 -ml-96 bg-green-200 ease-in-out duration-300 z-10";
   };
 
@@ -41,18 +42,16 @@ const SideNav = ({ isOpen, setIsOpen, setGeneration }) => {
 };
 
 const NavButton = ({ generation, clickHandler }) => {
-  const handleClick = () => {
-    clickHandler(generation[0]);
-  };
-
   return (
     <li>
-      <button
-        onClick={handleClick}
-        className="w-full px-4 py-1 rounded-md mb-2 bg-green-600 text-white hover:drop-shadow-sm hover:bg-green-700"
-      >
-        {generation[1]}
-      </button>
+        <Link to={`generation/${generation[0]}`}>
+        <button
+          onClick={clickHandler}
+          className="w-full px-4 py-1 rounded-md mb-2 bg-green-600 text-white hover:drop-shadow-sm hover:bg-green-700"
+        >
+          {generation[1]}
+        </button>
+        </Link>
     </li>
   );
 };
