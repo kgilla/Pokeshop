@@ -1,6 +1,6 @@
 import App from "./App";
 import ErrorPage from "./pages/errorPage";
-import PokemonIndex from "./pages/pokemonIdex";
+import PokemonIndex from "./pages/pokemonIndex";
 import PokemonGrid  from "./pages/PokemonGrid"
 import { createBrowserRouter } from "react-router-dom";
 import query from "./utils/query"
