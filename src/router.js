@@ -4,6 +4,7 @@ import PokemonIndex from "./pages/pokemonIdex";
 import PokemonGrid  from "./pages/PokemonGrid"
 import { createBrowserRouter } from "react-router-dom";
 import query from "./utils/query"
+import PokemonDetails from "./pages/PokemonDetails";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,10 @@ export const router = createBrowserRouter([
       {
         path: "generation/:id",
         element: <PokemonGrid />,
-        loader: query.fetchPokemonByGenerations,
+      },
+      {
+        path: "pokemon/:id",
+        element: <PokemonDetails />,
       },
     ],
   },

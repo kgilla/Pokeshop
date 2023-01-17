@@ -1,6 +1,5 @@
 import { generations } from "../utils/const";
 import { Link } from "react-router-dom";
-import { click } from "@testing-library/user-event/dist/click";
 
 const SideNav = ({ isOpen, setIsOpen }) => {
   const handleOverlayClick = () => {
@@ -13,15 +12,15 @@ const SideNav = ({ isOpen, setIsOpen }) => {
 
   const classChange = () => {
     return isOpen
-      ? "fixed inset-0 w-96 ml-0 bg-green-200 transition-all ease-in-out duration-300 z-10"
-      : "fixed inset-0 w-64 -ml-96 bg-green-200 ease-in-out duration-300 z-10";
+      ? "fixed inset-0 w-80 ml-0 bg-gray-100 dark:bg-gray-600 transition-all ease-in-out duration-300 z-10 px-6 py-6"
+      : "fixed inset-0 w-64 -ml-96 ease-in-out duration-300 z-10";
   };
 
   return (
     <div>
       <div className={classChange()}>
-        <h1 className="px-3 font-bold text-lg">Generations</h1>
-        <ul className="flex flex-col px-4">
+        <h1 className="font-bold text-lg dark:text-white">Generations</h1>
+        <ul className="flex flex-col">
           {Object.entries(generations).map((gen) => (
             <NavButton
               key={gen[0]}

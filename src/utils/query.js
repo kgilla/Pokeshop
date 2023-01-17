@@ -6,7 +6,20 @@ const query = (function() {
     return await response.json();
   }
 
-  const fetchPokemonByGeneration = async (generation = 1) => {
+  
+  const fetchPokemonById = async (id) => {
+    const data = await fetchData(
+      `https://pokeapi.co/api/v2/pokemon/${id}`
+    );
+    if (data) {
+      return data
+    } else {
+      console.error(`Something went wrong fetching pokemon with id ${id}`)
+    }
+  };
+
+
+  const fetchPokemonByGeneration = async (generation) => {
     const data = await fetchData(
       `https://pokeapi.co/api/v2/generation/${generation}`
     );
@@ -32,7 +45,7 @@ const query = (function() {
   };
 
   return {
-    fetchData, fetchPokemonByGeneration
+    fetchData, fetchPokemonByGeneration, fetchPokemonById
   }
 }())
 
