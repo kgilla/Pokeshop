@@ -18,6 +18,10 @@ export const router = createBrowserRouter([
         element: <PokemonGrid />,
       },
       {
+        path: "type/:id",
+        element: <PokemonGrid />,
+      },
+      {
         path: "pokemon/:id",
         element: <PokemonDetails />,
       },

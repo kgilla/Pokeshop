@@ -1,4 +1,4 @@
-import { generations } from "../utils/const";
+import { generations, types } from "../utils/const";
 import { Link } from "react-router-dom";
 
 const SideNav = ({ isOpen, setIsOpen }) => {
@@ -19,16 +19,29 @@ const SideNav = ({ isOpen, setIsOpen }) => {
   return (
     <div>
       <div className={classChange()}>
-        <h1 className="font-bold text-lg dark:text-white">Generations</h1>
-        <ul className="flex flex-col">
-          {Object.entries(generations).map((gen) => (
+        {/* Generations */}
+        <NavSection title="Pokemon Generations">
+        {Object.entries(generations).map((generation) => (
             <NavButton
-              key={gen[0]}
-              generation={gen}
+              key={generation[0]}
+              link={`generation/${generation[0]}`}
+              innerText={generation[1]}
               clickHandler={handleMenuItemClick}
             />
           ))}
-        </ul>
+        </NavSection>
+
+        {/* Pokemon Types */}
+        <NavSection title="Pokemon Types">
+        {Object.entries(types).map((type) => (
+            <NavButton
+              key={type[0]}
+              link={`type/${type[0]}`}
+              innerText={type[1]}
+              clickHandler={handleMenuItemClick}
+            />
+          ))}
+        </NavSection>
       </div>
       {isOpen ? (
         <div
@@ -40,17 +53,28 @@ const SideNav = ({ isOpen, setIsOpen }) => {
   );
 };
 
-const NavButton = ({ generation, clickHandler }) => {
+const NavSection = ({title, children}) => {
+  return (
+  <div>
+    <h1 className="font-bold text-lg dark:text-white">{title}</h1>
+    <ul className="flex flex-col">
+      {children}
+    </ul>
+  </div>
+  )
+}
+
+const NavButton = ({ link, innerText, clickHandler }) => {
   return (
     <li>
-        <Link to={`generation/${generation[0]}`}>
-        <button
-          onClick={clickHandler}
-          className="w-full px-4 py-1 rounded-md mb-2 bg-green-600 text-white hover:drop-shadow-sm hover:bg-green-700"
-        >
-          {generation[1]}
-        </button>
-        </Link>
+      <Link to={link}>
+      <button
+        onClick={clickHandler}
+        className="w-full px-4 py-1 rounded-md mb-2 bg-green-600 text-white hover:drop-shadow-sm hover:bg-green-700 capitalize"
+      >
+        {innerText}
+      </button>
+      </Link>
     </li>
   );
 };

@@ -19,8 +19,13 @@ const App = () => {
         setIsOpen={setIsOpen}
       />
       <div className="bg-slate-200 min-h-screen dark:bg-gray-900">
+        <div className="min-h-screen container m-auto py-24 px-12 bg-white dark:bg-gray-700">
           <Outlet />
+        </div>
       </div>
+      <footer className="bg-green-500 h-12">
+        This is a footer
+      </footer>
     </div>
   );
 };

@@ -1,9 +1,6 @@
 import { typeColors } from "../utils/const";
-import { Link } from "react-router-dom";
 
 const PokemonCard = ({ pokemon }) => {
-  const id = pokemon.id;
-
   const stats = () => {
     return pokemon.stats.map((item) => (
       <div
@@ -33,29 +30,27 @@ const PokemonCard = ({ pokemon }) => {
   };
 
   return (
-    <Link to={`/pokemon/${id}`}>
-      <div className="border-2 border-gray-300 dark:border-gray-900 shadow-lg rounded-md p-4 bg-amber-100 dark:bg-blue-900 hover:cursor-pointer">
-        <header className="flex justify-between mb-2">
-          <h1 className="capitalize font-bold dark:text-gray-100">{pokemon.name}</h1>
-          <span className="font-bold text-gray-600 dark:text-gray-400">#{pokemon.id}</span>
-        </header>
+    <div className="max-w-xs border-2 border-gray-300 dark:border-gray-900 shadow-lg rounded-md p-4 bg-amber-100 dark:bg-blue-900">
+      <header className="flex justify-between mb-2">
+        <h1 className="capitalize font-bold dark:text-gray-100">{pokemon.name}</h1>
+        <span className="font-bold text-gray-600 dark:text-gray-400">#{pokemon.id}</span>
+      </header>
 
-        <div className="border-2 border-gray-300 dark:border-gray-900 rounded flex justify-center items-center bg-red-200 dark:bg-gray-500 mb-2">
-          <img
-            className="w-36 h-36"
-            src={pokemon.sprites.front_default}
-            alt={`${pokemon.name}`}
-          ></img>
-        </div>
-
-        <div className="mb-2">{types()}</div>
-
-        <div className="border-2 dark:border-gray-900 rounded p-1 bg-white border-gray-300 dark:bg-gray-500">
-          {" "}
-          {stats()}
-        </div>
+      <div className="border-2 border-gray-300 dark:border-gray-900 rounded flex justify-center items-center bg-red-200 dark:bg-gray-500 mb-2">
+        <img
+          className="w-36 h-36"
+          src={pokemon.sprites.front_default}
+          alt={`${pokemon.name}`}
+        ></img>
       </div>
-    </Link>
+
+      <div className="mb-2">{types()}</div>
+
+      <div className="border-2 dark:border-gray-900 rounded p-1 bg-white border-gray-300 dark:bg-gray-500">
+        {" "}
+        {stats()}
+      </div>
+    </div>
   );
 };
 
