@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import {Outlet} from "react-router-dom";
 import TopNav from "./components/TopNav";
 import SideNav from "./components/SideNav";
@@ -6,6 +6,13 @@ import SideNav from "./components/SideNav";
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    
+    if(localStorage.theme) setIsDarkMode(localStorage.theme)
+    
+    console.log(localStorage)
+  }, [])
 
   return (
     <div className={isDarkMode ? "dark dark:bg-black " : ""}>

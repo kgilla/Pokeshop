@@ -1,4 +1,4 @@
-import { generations, types } from "../utils/const";
+import { pokemonGenerations, pokemonTypes } from "../utils/const";
 import { NavLink } from "react-router-dom";
 
 const SideNav = ({ isOpen, setIsOpen }) => {
@@ -21,7 +21,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
       <div className={classChange()}>
         {/* Generations */}
         <NavSection title="Pokemon Generations">
-        {Object.entries(generations).map((generation) => (
+        {Object.entries(pokemonGenerations).map((generation) => (
             <NavButton
               key={generation[0]}
               link={`generation/${generation[0]}`}
@@ -33,11 +33,12 @@ const SideNav = ({ isOpen, setIsOpen }) => {
 
         {/* Pokemon Types */}
         <NavSection title="Pokemon Types">
-        {Object.entries(types).map((type) => (
+        {Object.entries(pokemonTypes).map((type) => (
             <NavButton
               key={type[0]}
-              link={`type/${type[1]}`}
-              innerText={type[1]}
+              link={`type/${type[0]}`}
+              innerText={type[0]}
+              bgColor={type[1].bgColor}
               clickHandler={handleMenuItemClick}
             />
           ))}
@@ -64,14 +65,14 @@ const NavSection = ({title, children}) => {
   )
 }
 
-const NavButton = ({ link, innerText, clickHandler }) => {
+const NavButton = ({ link, innerText, bgColor, clickHandler }) => {
   return (
     <li className="mb-2 w-full flex">
       <NavLink to={link}  onClick={clickHandler}
         className={({ isActive }) =>
         isActive
-          ? "w-full p-2 rounded-md bg-green-800 hover:drop-shadow-md hover:bg-green-700 capitalize text-white"
-          : "w-full p-2 rounded-md bg-green-600  hover:drop-shadow-sm hover:bg-green-700 capitalize text-white font-semibold"
+          ? `w-full p-2 rounded-md ${bgColor ? bgColor : "bg-green-600"} drop-shadow-md border-2 border-gray-600 hover:brightness-90 capitalize text-white`
+          : `w-full p-2 rounded-md ${bgColor ? bgColor : "bg-green-600"} hover:drop-shadow-sm hover:brightness-90 capitalize text-white font-semibold`
         }
       > 
       {innerText}

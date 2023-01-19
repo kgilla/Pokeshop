@@ -1,4 +1,4 @@
-import { typeColors } from "../utils/const";
+import { pokemonTypes } from "../utils/const";
 
 const PokemonCard = ({ pokemon }) => {
   const stats = () => {
@@ -19,8 +19,8 @@ const PokemonCard = ({ pokemon }) => {
     return pokemon.types.map((item) => (
       <span
         className={
-          typeColors[item.type.name] +
-          " rounded-xl py-1 px-2 mr-1 text-sm font-bold text-gray-200 dark:border-2 dark:border-gray-900"
+          pokemonTypes[item.type.name].bgColor +
+          " rounded-xl py-1 px-2 mr-1 text-sm font-semibold text-gray-200 dark:border-2 dark:border-gray-900"
         }
         key={item.type.name}
       >
@@ -33,7 +33,9 @@ const PokemonCard = ({ pokemon }) => {
     <div className="max-w-xs border-2 border-gray-300 dark:border-gray-900 shadow-lg rounded-md p-4 bg-amber-100 dark:bg-blue-900">
       <header className="flex justify-between mb-2">
         <h1 className="capitalize font-bold dark:text-gray-100">{pokemon.name}</h1>
-        <span className="font-bold text-gray-600 dark:text-gray-400">#{pokemon.id}</span>
+        <span className="font-bold text-gray-600 dark:text-gray-400">
+          #{pokemon.id}
+        </span>
       </header>
 
       <div className="border-2 border-gray-300 dark:border-gray-900 rounded flex justify-center items-center bg-red-200 dark:bg-gray-500 mb-2">

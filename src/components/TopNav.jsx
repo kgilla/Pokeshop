@@ -6,6 +6,7 @@ const TopNav = ({ setIsOpen, setIsDarkMode, isDarkMode }) => {
   };
 
   const handleDarkToggleClick = () => {
+    localStorage.theme = !isDarkMode
     setIsDarkMode(!isDarkMode)
   }
 
