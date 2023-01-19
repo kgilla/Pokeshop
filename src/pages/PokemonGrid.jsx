@@ -27,8 +27,8 @@ const PokemonGrid = () => {
   return (
     <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-6">
       {isLoading ? <Loading/> : pokemon.length ? pokemon.map((item) => (
-        <Link to={`/pokemon/${item.id}`}>
-          <PokemonCard key={item.id} pokemon={item}></PokemonCard>
+        <Link to={`/pokemon/${item.name}`} key={item.id}>
+          <PokemonCard pokemon={item}></PokemonCard>
         </Link>
       )): null}
     </div>

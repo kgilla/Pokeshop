@@ -1,5 +1,5 @@
 import { generations, types } from "../utils/const";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const SideNav = ({ isOpen, setIsOpen }) => {
   const handleOverlayClick = () => {
@@ -36,7 +36,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
         {Object.entries(types).map((type) => (
             <NavButton
               key={type[0]}
-              link={`type/${type[0]}`}
+              link={`type/${type[1]}`}
               innerText={type[1]}
               clickHandler={handleMenuItemClick}
             />
@@ -56,8 +56,8 @@ const SideNav = ({ isOpen, setIsOpen }) => {
 const NavSection = ({title, children}) => {
   return (
   <div>
-    <h1 className="font-bold text-lg dark:text-white">{title}</h1>
-    <ul className="flex flex-col">
+    <h1 className="font-bold text-lg dark:text-white mb-2">{title}</h1>
+    <ul className="flex flex-col mb-4">
       {children}
     </ul>
   </div>
@@ -66,15 +66,16 @@ const NavSection = ({title, children}) => {
 
 const NavButton = ({ link, innerText, clickHandler }) => {
   return (
-    <li>
-      <Link to={link}>
-      <button
-        onClick={clickHandler}
-        className="w-full px-4 py-1 rounded-md mb-2 bg-green-600 text-white hover:drop-shadow-sm hover:bg-green-700 capitalize"
-      >
-        {innerText}
-      </button>
-      </Link>
+    <li className="mb-2 w-full flex">
+      <NavLink to={link}  onClick={clickHandler}
+        className={({ isActive }) =>
+        isActive
+          ? "w-full p-2 rounded-md bg-green-800 hover:drop-shadow-md hover:bg-green-700 capitalize text-white"
+          : "w-full p-2 rounded-md bg-green-600  hover:drop-shadow-sm hover:bg-green-700 capitalize text-white font-semibold"
+        }
+      > 
+      {innerText}
+      </NavLink>
     </li>
   );
 };
