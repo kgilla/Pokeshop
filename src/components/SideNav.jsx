@@ -12,7 +12,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
 
   const classChange = () => {
     return isOpen
-      ? "fixed inset-0 w-80 ml-0 bg-gray-100 dark:bg-gray-600 transition-all ease-in-out duration-300 z-10 px-6 py-6"
+      ? "fixed inset-0 w-80 ml-0 bg-gray-100 dark:bg-gray-600 transition-all ease-linear duration-200 z-10 px-6 py-6"
       : "fixed inset-0 w-64 -ml-96 ease-in-out duration-300 z-10";
   };
 

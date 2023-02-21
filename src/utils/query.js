@@ -9,6 +9,24 @@ const query = (function() {
     return await response.json();
   }
 
+  const fetchPokemonByList = async (pokemonToFetch) => {
+    let list = [];
+
+    pokemonToFetch.forEach((item) => {
+      list.push(fetchData(`${baseURL}/pokemon/${item.name}`));
+    });
+
+    const resolved = await Promise.allSettled(list).catch((err) => {
+      console.log("A promise failed to resolve", err);
+    });
+
+    if (resolved) {
+      return resolved
+        .filter((item) => item.status === "fulfilled")
+        .map((item) => item.value)
+    }
+  }
+
   
   const fetchPokemonById = async (id) => {
     const data = await fetchData(
@@ -17,7 +35,7 @@ const query = (function() {
     if (data) {
       return data
     } else {
-      console.error(`Something went wrong fetching pokemon with id ${id}`)
+      console.error(`Something went wrong fetching pokemon with id: ${id}`)
     }
   };
 
@@ -27,23 +45,11 @@ const query = (function() {
     );
 
     if (data) {
-      let list = [];
-
-      data.pokemon_species.forEach((item) => {
-        list.push(fetchData(`${baseURL}/pokemon/${item.name}`));
-      });
-
-      const resolved = await Promise.allSettled(list).catch((err) => {
-        console.log("A promise failed to resolve", err);
-      });
-
-      if (resolved) {
-        return resolved
-          .filter((item) => item.status === "fulfilled")
-          .map((item) => item.value)
-          .sort((a, b) => (a.id > b.id ? 1 : -1));
-      }
+      return {pokemon: data.pokemon_species, region: data.main_region.name}
+    } else {
+      console.error(`Error fetching pokemon with generation: ${generation}`)
     }
+    
   };
 
   const fetchPokemonByType = async (type) => {
@@ -52,27 +58,14 @@ const query = (function() {
     );
 
     if (data) {
-      let list = [];
-
-      data.pokemon.forEach((item) => {
-        list.push(fetchData(`${item.pokemon.url}`));
-      });
-
-      const resolved = await Promise.allSettled(list).catch((err) => {
-        console.log("A promise failed to resolve", err);
-      });
-
-      if (resolved) {
-        return resolved
-          .filter((item) => item.status === "fulfilled")
-          .map((item) => item.value)
-          .sort((a, b) => (a.id > b.id ? 1 : -1));
-      }
+      return {...data, pokemon: data.pokemon.map(item => {return item.pokemon})}
+    } else {
+      console.error(`Error fetching pokemon with type: ${type}`)
     }
   }
 
   return {
-    fetchData, fetchPokemonByGeneration, fetchPokemonById, fetchPokemonByType
+    fetchData, fetchPokemonByGeneration, fetchPokemonById, fetchPokemonByType, fetchPokemonByList
   }
 }())
 

@@ -3,7 +3,6 @@ import ErrorPage from "./pages/errorPage";
 import PokemonIndex from "./pages/pokemonIndex";
 import PokemonGrid  from "./pages/PokemonGrid"
 import { createBrowserRouter } from "react-router-dom";
-import query from "./utils/query"
 import PokemonDetails from "./pages/PokemonDetails";
 
 export const router = createBrowserRouter([

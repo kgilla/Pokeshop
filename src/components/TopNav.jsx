@@ -1,13 +1,17 @@
-import {BsFillSunFill, BsFillMoonFill} from "react-icons/bs";
+import {BsFillSunFill, BsFillMoonFill, BsFillCartFill} from "react-icons/bs";
 
-const TopNav = ({ setIsOpen, setIsDarkMode, isDarkMode }) => {
+const TopNav = ({ setIsNavOpen, setIsCartOpen, setIsDarkMode, isDarkMode }) => {
   const handleMenuClick = () => {
-    setIsOpen(true);
+    setIsNavOpen(true);
   };
 
   const handleDarkToggleClick = () => {
     localStorage.theme = !isDarkMode
     setIsDarkMode(!isDarkMode)
+  }
+
+  const handleCartClick = () => {
+    setIsCartOpen(true)
   }
 
   return (
@@ -27,9 +31,18 @@ const TopNav = ({ setIsOpen, setIsDarkMode, isDarkMode }) => {
         Pokestore
       </h1>
 
-      <button className={`h-9 w-9 justify-self-end place-self-center flex justify-center items-center text-white text-xl font-bold ${isDarkMode ? 'bg-gray-600' : 'bg-green-700'} rounded-full hover:brightness-90`} onClick={handleDarkToggleClick}>
-        {isDarkMode ?  <BsFillSunFill className="h-6 w-6"/> : <BsFillMoonFill className="h-6 w-6"/>}
-      </button>
+      <div className="flex justify-end">
+
+        <button className={`h-9 w-9 justify-self-end place-self-center flex justify-center items-center text-white text-xl font-bold ${isDarkMode ? 'bg-gray-600' : 'bg-green-700'} rounded-full hover:brightness-90`} onClick={handleDarkToggleClick}>
+          {isDarkMode ?  <BsFillSunFill className="h-6 w-6"/> : <BsFillMoonFill className="h-6 w-6"/>}
+        </button>
+        
+        <button className={`h-9 w-9 justify-self-end place-self-center flex justify-center items-center text-white text-xl font-bold ${isDarkMode ? 'bg-gray-600' : 'bg-green-700'} rounded-full hover:brightness-90`} onClick={handleCartClick}>
+          <BsFillCartFill/>
+        </button>
+        
+      </div>
+
     </header>
   );
 };
