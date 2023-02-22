@@ -15,7 +15,7 @@ const TopNav = ({ setIsNavOpen, setIsCartOpen, setIsDarkMode, isDarkMode }) => {
   }
 
   return (
-    <header className="h-12 bg-green-600 dark:bg-gray-500 px-8 w-screen fixed grid grid-cols-3 border-b-2 border-gray-300 dark:border-gray-900">
+    <header className="h-12 bg-green-600 dark:bg-gray-500 px-8 w-screen fixed grid grid-cols-3 border-b-2 border-green-700 dark:border-gray-900">
       <button
         onClick={handleMenuClick}
         className="justify-self-start hover:brightness-90"

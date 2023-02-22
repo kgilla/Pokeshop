@@ -33,7 +33,7 @@ const App = () => {
       />
       <div className="bg-slate-200 min-h-screen dark:bg-gray-900 bg-cover bg-fixed" 
       style={{backgroundImage: isDarkMode ? "url(/darkBackground.png)" : "url(/lightBackground.png"}}>
-        <div className="min-h-screen container m-auto py-24 px-12 bg-white dark:bg-gray-700">
+        <div className="min-h-screen container m-auto py-24 px-12 bg-white dark:bg-gray-700 border-x-2 border-gray-300 dark:border-gray-600">
           <Outlet />
         </div>
       </div>

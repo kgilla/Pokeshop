@@ -29,6 +29,7 @@ const PokemonCard = ({ pokemon }) => {
     ));
   };
 
+
   return (
     <div className="max-w-xs border-2 border-gray-300 dark:border-gray-900 shadow-lg rounded-md p-4 bg-amber-100 dark:bg-blue-900">
       <header className="flex justify-between mb-2">
@@ -38,7 +39,7 @@ const PokemonCard = ({ pokemon }) => {
         </span>
       </header>
 
-      <div className="border-2 border-gray-300 dark:border-gray-900 rounded flex justify-center items-center bg-red-200 dark:bg-gray-500 mb-2">
+      <div className="border-2 border-gray-300 dark:border-gray-900 rounded flex justify-center items-center bg-red-200 dark:bg-gray-500 mb-2 bg-cover bg-center" style={{backgroundImage: "url(/battle.png)"}}>
         <img
           className={pokemon.sprites.front_default ? "w-36 h-36" :"w-36 h-36 p-4"}
           src={pokemon.sprites.front_default || "/pokeball.png"}

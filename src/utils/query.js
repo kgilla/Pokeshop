@@ -1,7 +1,6 @@
 const query = (function() {
   const baseURL = 'https://pokeapi.co/api/v2'
   
-  
   const fetchData = async (url) => {
     if (!url) return;
     const response = await fetch(url);
