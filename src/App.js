@@ -10,11 +10,13 @@ const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   useEffect(() => {  
-    if(localStorage.theme) setIsDarkMode(localStorage.theme) 
+    if (localStorage.theme) {
+      setIsDarkMode(localStorage.theme === "true" ? true : false)
+    }
   }, [])
 
   return (
-    <div className={isDarkMode ? "dark dark:bg-black " : ""}>
+    <div className={isDarkMode ? "dark" : ""} >
       <TopNav
         setIsNavOpen={setIsNavOpen}
         setIsCartOpen={setIsCartOpen}
@@ -29,12 +31,13 @@ const App = () => {
         isOpen={isCartOpen}
         setIsOpen={setIsCartOpen}
       />
-      <div className="bg-slate-200 min-h-screen dark:bg-gray-900">
+      <div className="bg-slate-200 min-h-screen dark:bg-gray-900 bg-cover bg-fixed" 
+      style={{backgroundImage: isDarkMode ? "url(/darkBackground.png)" : "url(/lightBackground.png"}}>
         <div className="min-h-screen container m-auto py-24 px-12 bg-white dark:bg-gray-700">
           <Outlet />
         </div>
       </div>
-      <footer className="bg-green-500 h-12">
+      <footer className="h-24 bg-green-600 dark:bg-gray-500 px-8 border-gray-300 dark:border-gray-900">
         This is a footer
       </footer>
     </div>

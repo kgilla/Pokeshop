@@ -4,21 +4,24 @@ import query from "../utils/query";
 import Loading from "../components/Loading";
 import PokemonCard from "../components/PokemonCard";
 
-
 const PokemonGrid = () => {
 
   const [pokemon, setPokemon] = useState([])
   const [pokemonList, setPokemonList] = useState([])
-  const [page, setPage] = useState(0);
+  // const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const {id} = useParams()
   const {pathname} = useLocation()
 
+  const limit = 30;
+
+
+
   // Handles querying for list of pokemon and initial data
   useEffect(() =>{
       (async () => {
-
+        console.log(pathname)
         setIsLoading(true)
 
         const data = pathname.includes("generation") ? 
@@ -29,7 +32,6 @@ const PokemonGrid = () => {
 
           //Sorts pokemon based on id found in url
           const sortedPokemon = data.pokemon.sort((first, second) => {
-            console.log(first, second)
             let firstNum = Number(first.url.slice(-6).match(/\d+/g)[0]);
             let secondNum = Number(second.url.slice(-6).match(/\d+/g)[0]);
             return firstNum > secondNum ? 1 : -1
@@ -38,7 +40,7 @@ const PokemonGrid = () => {
           setPokemonList(sortedPokemon)
 
           //Fetches initial pokemon to be displayed
-          const resolvedData = await query.fetchPokemonByList(sortedPokemon.slice(0,30))
+          const resolvedData = await query.fetchPokemonByList(sortedPokemon.slice(0, limit))
 
           setPokemon(resolvedData);
         }
@@ -48,23 +50,9 @@ const PokemonGrid = () => {
     
   }, [id, pathname])
 
-  // Handles new pokemon to be fetched through next page requests
-  useEffect(() =>{
-    (async () => {
-      const limit = 20;
-      setIsLoading(true)
-      console.log("hi")
-      if(pokemonList.length) {
-        const resolvedData = await query.fetchPokemonByList(pokemonList.slice(page * limit, limit))
-        setPokemon(resolvedData)
-      }
-      setIsLoading(false)
-    })();
-  
-  }, [page, pokemonList])
-
   const handleClick = () => {
-    setPage(page + 1)
+    // setPage(page + 1)
+    // const newPath = pathname + "page"
   }
 
   return (
