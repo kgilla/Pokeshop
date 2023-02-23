@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import {Link, useLoaderData} from "react-router-dom";
 import query from "../utils/query";
-import Loading from "../components/Loading";
 import PokemonCard from "../components/PokemonCard";
+import PlaceholderCard from "../components/PlaceholderCard";
 
 const PokemonGrid = () => {
   const data = useLoaderData()
@@ -36,10 +36,18 @@ const PokemonGrid = () => {
     
   }, [data])
 
+  const placeHolders = () => {
+    let array = []
+    for(let x = 0; x < 16; x++) {
+      array.push(<PlaceholderCard/>)
+    }
+    return array
+  }
+
   return (
     <>
-      <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-6">
-      {isLoading ? <Loading/> : pokemon.length ? pokemon.map((item) => (
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+      {isLoading ? placeHolders() : pokemon.length ? pokemon.map((item) => (
         <Link to={`/pokemon/${item.name}`} key={item.id}>
           <PokemonCard pokemon={item}></PokemonCard>
         </Link>

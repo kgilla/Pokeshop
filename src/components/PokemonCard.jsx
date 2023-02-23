@@ -31,7 +31,7 @@ const PokemonCard = ({ pokemon }) => {
 
 
   return (
-    <div className="max-w-xs border-2 border-gray-300 dark:border-gray-900 shadow-lg rounded-md p-4 bg-amber-100 dark:bg-blue-900">
+    <div className="max-w-sm border-2 border-gray-300 dark:border-gray-900 shadow-lg rounded-md p-4 bg-amber-100 dark:bg-blue-900">
       <header className="flex justify-between mb-2">
         <h1 className="capitalize font-bold dark:text-gray-100">{pokemon.name}</h1>
         <span className="font-bold text-gray-600 dark:text-gray-400">

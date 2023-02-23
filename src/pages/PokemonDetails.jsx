@@ -27,7 +27,7 @@ const PokemonDetails = () => {
       <PokemonCard pokemon={pokemon} />
       </div>
       <div className="col-span-2 bg-green-600">
-        {JSON.stringify(pokemon)}
+       
       </div>
     </div>  : null}
   </div>)

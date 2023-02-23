@@ -23,17 +23,18 @@ const App = () => {
         setIsDarkMode={setIsDarkMode}
         isDarkMode={isDarkMode}
       />
-      <SideNav
-        isOpen={isNavOpen}
-        setIsOpen={setIsNavOpen}
-      />
       <Cart
         isOpen={isCartOpen}
         setIsOpen={setIsCartOpen}
       />
-      <div className="bg-slate-200 min-h-screen dark:bg-gray-900 bg-cover bg-fixed" 
-      style={{backgroundImage: isDarkMode ? "url(/darkBackground.png)" : "url(/lightBackground.png"}}>
-        <div className="min-h-screen container m-auto py-24 px-12 bg-white dark:bg-gray-700 border-x-2 border-gray-300 dark:border-gray-600">
+      <div className="bg-slate-200 min-h-screen dark:bg-gray-900 bg-cover bg-fixed flex transition-all ease-linear duration-200" 
+      style={{backgroundImage: `url(${isDarkMode ? '/darkBackground.png' : '/lightBackground.jpg'})`}}
+      >
+        <SideNav
+          isOpen={isNavOpen}
+          setIsOpen={setIsNavOpen}
+        />
+        <div className="min-h-screen container m-auto py-24 px-6 bg-white dark:bg-gray-700 border-x-2 border-gray-300 dark:border-gray-600">
           <Outlet />
         </div>
       </div>
